@@ -27,3 +27,9 @@ async def on_message(message):
         await message.channel.send("pong")
 
 client.run(TOKEN)
+import time
+
+try:
+except Exception as e:
+    print(e)
+    time.sleep(10)
