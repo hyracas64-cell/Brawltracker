@@ -1,28 +1,23 @@
 import discord
 import os
+from discord.ext import commands
 
-# intents obligatoires
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f"Connecté en tant que {client.user}")
+    print(f"Connecté en tant que {bot.user}")
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
 
-    if message.content == "!ping":
-        await message.channel.send("pong 🏓")
-
-# récup du token depuis Render (Environment)
 TOKEN = os.getenv("TOKEN")
 
 if TOKEN is None:
-    print("❌ TOKEN MANQUANT")
+    print("TOKEN MANQUANT")
 else:
-    client.run(TOKEN)
+    bot.run(TOKEN)
