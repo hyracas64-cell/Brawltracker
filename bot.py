@@ -1,9 +1,13 @@
 import discord
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 print("BOT STARTING...")
 
 TOKEN = os.getenv("TOKEN")
+print("TOKEN =", TOKEN)
 
 if TOKEN is None:
     print("❌ TOKEN MANQUANT")
